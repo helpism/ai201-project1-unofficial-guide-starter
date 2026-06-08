@@ -127,7 +127,41 @@ graph LR
      with my specified chunk size and overlap" is a plan. -->
 
 **Milestone 3 — Ingestion and chunking:**
+Role: You are an emerging AI engineer specialized in building robust Retrieval-Augmented Generation (RAG) pipelines.
+Context and Resources:
+You have access to a project specification file named planning.md, which outlines the system architecture, evaluation criteria, and a strict chunking strategy.
+You have a data directory named documents/ containing ten text documents detailing local restaurant guides, dining culture, and cuisines around Metropolitan State University on the East Side of Saint Paul.
+Task Overview:
+Your objective is to implement Milestone 3 of the RAG pipeline by creating a standalone, production-grade Python script named chunking_ingestion.py. This script must programmatically load, clean, and chunk the text files according to the strict parameters defined below.
+Technical Specifications for Chunking:
+Chunking Strategy: Use a recursive character text splitter mechanism to maintain semantic cohesion.
+Chunk Size: Exactly 800 characters per chunk
+Chunk Overlap: Exactly 150 characters to ensure context, such as parent headers or restaurant names, is preserved across boundaries.
 
-**Milestone 4 — Embedding and retrieval:**
-
+Tokenization Separators: Prioritize splitting text by structural elements in the order of double newlines, single newlines, spaces, and empty strings.
+**Milestone 4 — Embedding and retrieval:** 
+read planning.md to understand how to construct the next part using this prompt:
+Please generate a Python module (or set of functions) that seamlessly integrates into my existing setup, following the exact specifications from my planning.md and the course guidelines below. 1. Current State & Integration Goal  My existing pipeline outputs a list of structured text chunks alongside their metadata (such as the source document name/ID and the chunk's index/position).  Your goal is to accept these existing chunks, embed them, commit them to a local vector store, and create a functional semantic retrieval function. 2. Technical Specifications  Embedding Model: Local all-MiniLM-L6-v2 via the sentence-transformers library (do not use cloud APIs).  Vector Database: Local ChromaDB (using the current persistent client syntax).  Retrieval Scope: Top-k retrieval set to return the top 4-5 most relevant chunks per query.  Metadata: Strict preservation of the source document filename/ID and relative position for down-stream source attribution. 3. Required Functions to Implement Please provide clean, modular Python code for: 1. Vector Store Initialization: A function to initialize the local Chroma persistent client and get/create a collection. 2. Chunk Ingestion (add_chunks_to_vector_store): A function that takes my pipeline's output chunks and their corresponding source metadata, embeds them using all-MiniLM-L6-v2, and upserts them into ChromaDB. 3. Semantic Search (retrieve_relevant_chunks): A function that takes a plain-language query string, queries the vector store, and returns a structured list of matches. Each match must explicitly return:  The chunk text  The source metadata (document name and position)  The distance/similarity score (for auditing quality)
 **Milestone 5 — Generation and interface:**
+read planning.md to understand how to construct the next part using this prompt:
+Your Task: Build Grounded Generation + Query Interface
+Generate a complete Python module called query_interface.py that:
+Enforces grounding at the system level (not just LLM suggestions)
+Guarantees source attribution programmatically
+Integrates ChromaDB retrieval with Groq LLM
+Provides a Gradio web UI for end-to-end testing
+Can be tested against the 5 evaluation queries in planning.md
+Requirements
+Grounding Architecture
+Your grounding strategy must satisfy:
+Retrieval-Only Context: The LLM receives ONLY the top-3 retrieved chunks as context. No general knowledge injection.
+System Prompt Enforcement: The system prompt MUST explicitly forbid generation outside the retrieved context — not merely suggest it.
+Reject Pattern: If the retrieved chunks do not answer the question, the LLM must say exactly: "I don't have enough information on that based on the restaurant guides available."
+Test Case: Ask the system a question it cannot answer (e.g., "What sushi restaurants exist in downtown Anchorage?"). It should refuse, not hallucinate.
+Example of STRONG grounding (answer is traceable to retrieved text):
+"According to the Hmong Village Shopping Center guide, you can find authentic Hmong cuisine at affordable prices. The documents specifically mention family-run restaurants with recipes passed down through generations."
+Source: hmong_village_shopping_center.txt
+Example of WEAK grounding (sounds good but not from docs):
+"There are several great Hmong restaurants in Saint Paul. These establishments typically offer traditional cooking techniques and family recipes. Many have been operating for decades and maintain high quality standards."
+[No source cited]
+This is a grounding failure even if factually correct.
