@@ -73,11 +73,11 @@ I chose to build a system that helps students find good resturants, mostly local
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 | What is the expected tipping etiquette when sitting at the bar vs. getting standard table service? | 15-20% standard for table service , and $1-2 per drink for a bartender.|
+| 2 | What are the main ingredients and characteristics of Pho, a popular Vietnamese dish near Metro State? | Slow-cooked broth, fresh rice noodles, customizable proteins (beef, chicken, vegetarian), aromatic herbs (basil, cilantro, lime), and fresh vegetables on the side. |
+| 3 | What types of dining establishments are available on the East Side, and what makes them different from each other? | Fine dining (upscale), casual neighborhood restaurants (familiar and unpretentious), authentic ethnic cuisine (Southeast Asian/Hmong, affordable), pub & bar food (comfort food), and street food/quick bites (fast and lower-cost). |
+| 4 | What is Banh Mi and what makes it a good meal option for students between classes? | A Vietnamese sandwich with crispy baguette, pickled vegetables, proteins, fresh cilantro, and jalapeno. It's quick, portable, and offers excellent value for quality. |
+| 5 | What makes Southeast Asian cuisine in St. Paul authentic and how is it connected to the community? | Recipes passed down through families, ingredients sourced for specific flavor profiles, cooking techniques refined through generations, and restaurants represent first/second/third-generation family businesses continuing family recipes. |
 
 ---
 
@@ -87,9 +87,9 @@ I chose to build a system that helps students find good resturants, mostly local
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1.  With 800-character chunks and 150-character overlap, important restaurant details could be split across chunk boundaries if restaurant descriptions exceed the chunk size. This could result in incomplete information being retrieved, e.g., pricing info separated from cuisine type, or restaurant hours separated from location details.
 
-2.
+2. If a user asks a question about dining culture or restaurant recommendations that appears similar to multiple chunks (e.g., questions about "best restaurants" might retrieve generic neighborhood descriptions instead of specific restaurant reviews). The all-MiniLM model's 384-dimensional vectors might conflate semantically similar but contextually different information. 
 
 ---
 
@@ -100,6 +100,17 @@ I chose to build a system that helps students find good resturants, mostly local
      Label each stage with the tool or library you're using.
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
+
+```mermaid
+graph LR
+    A["Document Ingestion<br/>(documents/ folder<br/>txt files)"] -->|Read files| B["Chunking<br/>(800 char chunks<br/>150 char overlap)"]
+    B -->|Split text| C["Embedding<br/>(sentence-transformers<br/>all-MiniLM-L6-v2)"]
+    C -->|Vector embeddings| D["Vector Store<br/>(ChromaDB)"]
+    D -->|Semantic search<br/>Top-k=3| E["Retrieval<br/>(Query matching)"]
+    E -->|Retrieved chunks| F["Generation<br/>(Groq API<br/>Claude/LLM)"]
+    F -->|Grounded response| G["User Interface<br/>(Gradio or Streamlit)"]
+    G -->|User query| E
+```
 
 ---
 
