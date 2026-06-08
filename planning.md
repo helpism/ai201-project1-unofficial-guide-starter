@@ -10,7 +10,7 @@
 ## Domain
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
-
+I chose to build a system that helps students find good resturants, mostly locally owned, around Metro State University in Saint Paul. This information is hard to find becuase there is simply no official channel for it, also there is no structured imformation on it in a lot of websites. 
 ---
 
 ## Documents
@@ -20,16 +20,19 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Visit Saint Paul| A saint paul guide website|https://www.visitsaintpaul.com/restaurants/neighborhoods/east-side/ |
+| 2 | Visit Saint Paul| A saint paul guide website| https://www.visitsaintpaul.com/restaurants/neighborhoods/lowertown/|
+| 3 | East side business association| business association in saint paul | https://esaba.org/directory/
+|
+| 4 | farmers market| imformation about saint paul's farmer's market| https://stpaulfarmersmarket.com/st-paul-farmers-market-vendors/|
+| 5 |twincites | Contains imformation about the twincites for eating adventures | https://twincities.eater.com/maps/best-st-paul-restaurants-minnesota|
+| 6 | mspmg | Another minnesota guide website| https://mspmag.com/search/location/st-paul-restaurants/
+|
+| 7 | RacketMn|Another minnesota guide website | https://racketmn.com/category/food/
+|
+| 8 | twincites| Contains imformation about the twincites for adventures | https://www.twincities.com/lifestyle/eat/|
+| 9 | reddit | a subreddit for information about saint paul| https://www.reddit.com/r/saintpaul/search/%3Fq%3Dfood|
+| 10 | swede hollow cafe| A pretty good cafe around saint paul|https://www.swedehollowcafe.com/ |
 
 ---
 
