@@ -22,14 +22,11 @@ I chose to build a system that helps students find good resturants, mostly local
 |---|--------|-------------|-----------------|
 | 1 | Visit Saint Paul| A saint paul guide website|https://www.visitsaintpaul.com/restaurants/neighborhoods/east-side/ |
 | 2 | Visit Saint Paul| A saint paul guide website| https://www.visitsaintpaul.com/restaurants/neighborhoods/lowertown/|
-| 3 | East side business association| business association in saint paul | https://esaba.org/directory/
-|
+| 3 | East side business association| business association in saint paul | https://esaba.org/directory/|
 | 4 | farmers market| imformation about saint paul's farmer's market| https://stpaulfarmersmarket.com/st-paul-farmers-market-vendors/|
 | 5 |twincites | Contains imformation about the twincites for eating adventures | https://twincities.eater.com/maps/best-st-paul-restaurants-minnesota|
-| 6 | mspmg | Another minnesota guide website| https://mspmag.com/search/location/st-paul-restaurants/
-|
-| 7 | RacketMn|Another minnesota guide website | https://racketmn.com/category/food/
-|
+| 6 | mspmg | Another minnesota guide website| https://mspmag.com/search/location/st-paul-restaurants/|
+| 7 | RacketMn|Another minnesota guide website | https://racketmn.com/category/food/|
 | 8 | twincites| Contains imformation about the twincites for adventures | https://www.twincities.com/lifestyle/eat/|
 | 9 | reddit | a subreddit for information about saint paul| https://www.reddit.com/r/saintpaul/search/%3Fq%3Dfood|
 | 10 | swede hollow cafe| A pretty good cafe around saint paul|https://www.swedehollowcafe.com/ |
@@ -43,11 +40,11 @@ I chose to build a system that helps students find good resturants, mostly local
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** 800 characters
 
-**Overlap:**
+**Overlap:** 150 character overlap
 
-**Reasoning:**
+**Reasoning:** 800 characters is small enough to capture the a specific restaurant sub-section/ topic. The 150 character overlap ensures that context is preserved incase a chunked information crosses the chunk boundary
 
 ---
 
@@ -59,11 +56,11 @@ I chose to build a system that helps students find good resturants, mostly local
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** all-MiniLM-L6-v2
 
-**Top-k:**
+**Top-k:** 3
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** all-MiniLM-L6-v2 is fast and efficient
 
 ---
 
